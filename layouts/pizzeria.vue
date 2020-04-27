@@ -1,5 +1,15 @@
 <template>
   <div class="position-relative overflow-hidden">
+    <!-- loading page -->
+    <section
+      v-if="getStateLoading"
+      class="loadScreen"
+      :class="getStateLoading ? 'loaded': 'loading'"
+    >
+      <h1>Cargando</h1>
+      <figure></figure>
+    </section>
+
     <!-- header -->
     <header
       class="container layout-block layout-block__header position-absolute d-flex justify-content-between align-items-center mx-auto"
@@ -10,7 +20,12 @@
       <ul class="main-menu d-flex">
         <li class="main-menu__item" v-for="(item, index) in menuSettings.sections" :key="index">
           <!-- <a href="#hero" class="text-decoration-none text-reset">Inicio</a> -->
-          <nuxt-link :to="item.link" tag="a" class="text-decoration-none text-reset">{{item.name}}</nuxt-link>
+          <nuxt-link
+            :to="item.link"
+            tag="a"
+            :menu-name="item.link"
+            class="text-decoration-none text-reset"
+          >{{item.name}}</nuxt-link>
         </li>
       </ul>
 
@@ -93,9 +108,13 @@
         <img src="@/static/img/pizza.png" class="img-fluid" alt>
       </div>
     </footer>
+    <div class="position-fixed go-top">
+      <nuxt-link to="/#inicio">{{getStateLoading}}</nuxt-link>
+    </div>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -108,26 +127,74 @@ export default {
         ]
       }
     };
+  },
+  mounted() {
+    if (process.browser) {
+      window.onNuxtReady(app => {
+        setTimeout(() => {
+          this.setLoading(false);
+        }, 2000);
+      });
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getStateLoading: "loading/getStateLoading"
+    })
+  },
+  methods: {
+    ...mapActions({
+      setLoading: "loading/setLoading"
+    })
   }
 };
 </script>
 <style lang="scss">
 .wrapper-footer {
-  background: linear-gradient(180deg, #008f4a, #008f4a, darken(#008f4a, 5));
+  background: linear-gradient(180deg, $primary, $primary, darken($primary, 5));
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    z-index: 0;
+    bottom: 0;
+    left: 0;
+    background: url("~@/static/img/pizzeria_patter.png");
+  }
 }
 .layout-block {
   position: relative;
-  z-index: 100;
   &__header {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    position: relative;
+    z-index: 200;
+    a[menu-name="#promotions"] {
+      position: relative;
+      &::after {
+        content: "!";
+        background-color: $accent-2;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        padding: 0 5px;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      &:hover {
+        &::after {
+          transform: translateY(-25%);
+        }
+      }
+    }
   }
   &__footer {
     display: grid;
     grid-template-rows: repeat(3, max-content);
     grid-template-columns: repeat(3, 1fr);
-    padding: 3rem 0 2rem;
+    padding: 3rem 0 70px;
     .footer-block {
       padding: 0 1rem;
       font-size: 14pt;
@@ -176,10 +243,13 @@ export default {
   align-items: center;
   transform: translateY(60%) rotate(0deg);
   animation: spin 5s ease infinite;
+  // z-index: 100;
+  display: none;
   img {
     width: 25%;
-    opacity: 0.4;
+    // opacity: 0.4;
   }
+
   @keyframes spin {
     0% {
       transform: translateY(60%) rotate(0deg);
@@ -187,6 +257,23 @@ export default {
     100% {
       transform: translateY(60%) rotate(360deg);
     }
+  }
+}
+.go-top {
+  bottom: 0;
+  right: 0;
+  background-color: $primary;
+  margin: 2rem;
+  color: $secondary;
+  height: 52px;
+  width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid $secondary;
+  a {
+    color: currentColor;
   }
 }
 </style>
