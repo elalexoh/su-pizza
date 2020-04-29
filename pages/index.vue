@@ -3,6 +3,7 @@
     <div class="sky-pizza position-absolute">
       <img src="@/static/img/pizza_real.png" class="img-fluid" alt>
     </div>
+
     <!-- hero -->
     <section id="hero" class="wrapper__hero position-relative">
       <div class="round-overlay position-absolute">
@@ -24,74 +25,168 @@
 
     <!-- combos and specials -->
     <section id="combos-and-specials" class="section-block section-block__combos row">
-      <div class="container combos-content">
-        <div class="row h-100 align-content-center">
+      <div class="container combos-content position-relative">
+        <!-- combos -->
+        <div class="row align-content-center">
           <div class="col-12">
             <h2 class="combos-content__title pb-5 text-right">Combos y Especiales</h2>
           </div>
-          <div class="col-3 custom-card">
+          <div class="col-3 custom-card" @mouseenter="showCombo">
             <div class="custom-card__wrapper">
-              <!-- head -->
-              <div class="custom-card__img">imagen</div>
               <!-- body -->
               <div class="custom-card__body position-relative">
-                <div class="custom-card__name">Nombre</div>
-                <ul class="custom-card__ingredients">
-                  <li
-                    class="custom-card__ingredient"
-                  >Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                <div class="custom-card__name">
+                  <h3>Combo 1</h3>
+                </div>
+                <div class="custom-card__price">
+                  <h3 class="price">
+                    <span class="price__currency">$</span>
+                    <span class="price__unidad">49.</span>
+                    <span class="price__centena">90</span>
+                  </h3>
+                </div>
+                <ul class="custom-card__items list-unstyled">
+                  <li class="custom-card__item">Pizza Chica</li>
+                  <li class="custom-card__item">Refresco 355ml</li>
                 </ul>
-                <div class="custom-card__price position-absolute"></div>
+              </div>
+              <div
+                class="custom-card__card-overlay position-absolute h-100 w-100 d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/static/img/pizza.png" class="img-fluid" alt>
+                <h2 class="pt-2">Combo 1</h2>
               </div>
             </div>
           </div>
-          <div class="col-3 custom-card">
+          <div class="col-3 custom-card" @mouseenter="showCombo">
             <div class="custom-card__wrapper">
-              <!-- head -->
-              <div class="custom-card__img">imagen</div>
               <!-- body -->
               <div class="custom-card__body position-relative">
-                <div class="custom-card__name">Nombre</div>
-                <ul class="custom-card__ingredients">
-                  <li
-                    class="custom-card__ingredient"
-                  >Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                <div class="custom-card__name">
+                  <h3>Combo 2</h3>
+                </div>
+                <div class="custom-card__price">
+                  <h3 class="price">
+                    <span class="price__currency">$</span>
+                    <span class="price__unidad">99.</span>
+                    <span class="price__centena">90</span>
+                  </h3>
+                </div>
+                <ul class="custom-card__items list-unstyled">
+                  <li class="custom-card__item">Pizza Grande</li>
+                  <li class="custom-card__item">2 Refrescos 355ml</li>
                 </ul>
-                <div class="custom-card__price position-absolute"></div>
+              </div>
+              <div
+                class="custom-card__card-overlay position-absolute h-100 w-100 d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/static/img/pizza.png" class="img-fluid" alt>
+                <h2 class="pt-2">Combo 2</h2>
               </div>
             </div>
           </div>
-          <div class="col-3 custom-card">
+          <div class="col-3 custom-card" @mouseenter="showCombo">
             <div class="custom-card__wrapper">
-              <!-- head -->
-              <div class="custom-card__img">imagen</div>
               <!-- body -->
               <div class="custom-card__body position-relative">
-                <div class="custom-card__name">Nombre</div>
-                <ul class="custom-card__ingredients">
-                  <li
-                    class="custom-card__ingredient"
-                  >Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                <div class="custom-card__name">
+                  <h3>Combo 3</h3>
+                </div>
+                <div class="custom-card__price">
+                  <h3 class="price">
+                    <span class="price__currency">$</span>
+                    <span class="price__unidad">269.</span>
+                    <span class="price__centena">90</span>
+                  </h3>
+                </div>
+                <ul class="custom-card__items list-unstyled">
+                  <li class="custom-card__item">3 Pizzas Grandes</li>
+                  <li class="custom-card__item">2 Refrescos 1.5l</li>
                 </ul>
-                <div class="custom-card__price position-absolute"></div>
+              </div>
+              <div
+                class="custom-card__card-overlay position-absolute h-100 w-100 d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/static/img/pizza.png" class="img-fluid" alt>
+                <h2 class="pt-2">Combo 3</h2>
               </div>
             </div>
           </div>
-          <div class="col-3 custom-card">
+          <div class="col-3 custom-card" @mouseenter="showCombo">
             <div class="custom-card__wrapper">
-              <!-- head -->
-              <div class="custom-card__img">imagen</div>
               <!-- body -->
               <div class="custom-card__body position-relative">
-                <div class="custom-card__name">Nombre</div>
-                <ul class="custom-card__ingredients">
-                  <li
-                    class="custom-card__ingredient"
-                  >Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                <div class="custom-card__name">
+                  <h3>Combo 4</h3>
+                </div>
+                <div class="custom-card__price">
+                  <h3 class="price">
+                    <span class="price__currency">$</span>
+                    <span class="price__unidad">349.</span>
+                    <span class="price__centena">90</span>
+                  </h3>
+                </div>
+                <ul class="custom-card__items list-unstyled">
+                  <li class="custom-card__item">4 Pizzas Grandes</li>
+                  <li class="custom-card__item">3 Refrescos 1.5l</li>
                 </ul>
-                <div class="custom-card__price position-absolute"></div>
+              </div>
+              <div
+                class="custom-card__card-overlay position-absolute h-100 w-100 d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/static/img/pizza.png" class="img-fluid" alt>
+                <h2 class="pt-2">Combo 4</h2>
               </div>
             </div>
+          </div>
+        </div>
+        <!-- specials -->
+        <div class="specials">
+          <div class="special-box">
+            <h3 class="special-box__title">
+              <span class="accent">Miercoles</span>
+              Hawaiiana
+            </h3>
+            <p class="special-box__price">
+              <span class="accent">$</span>159.
+              <span class="cents">90</span>
+            </p>
+            <ul class="special-box__pieces">
+              <li class="special-box__piece">
+                2 Pizza
+                <span class="accent">GRANDES</span>
+              </li>
+              <li class="special-box__piece">Refresco de 1.5l</li>
+            </ul>
+          </div>
+          <div class="special-box">
+            <h3 class="special-box__title">
+              <span class="accent">Jueves</span>
+              Pepperoni
+            </h3>
+            <p class="special-box__price">
+              <span class="accent">$</span>159.
+              <span class="cents">90</span>
+            </p>
+            <ul class="special-box__pieces">
+              <li class="special-box__piece">
+                2 Pizza
+                <span class="accent">GRANDES</span>
+              </li>
+              <li class="special-box__piece">Refresco de 1.5l</li>
+            </ul>
+          </div>
+          <div class="special-box special-box--without-title">
+            <p class="special-box__price">
+              <span class="accent">$</span>15.
+              <span class="cents">00</span>
+            </p>
+            <p class="special-box__description">
+              Con la compra de cualquier pizza
+              <span class="accent">más</span> 15 pesos te llevas
+              <span class="accent">un Refresco de 1.5l</span>
+            </p>
+            <p></p>
           </div>
         </div>
       </div>
@@ -99,19 +194,21 @@
 
     <!-- promotions -->
     <section id="promotions" class="section-block section-block__promotions row position-relative">
-      <div class="layout-elements position-absolute w-100 h-100">
-        <div class="layout-elements__block layout-elements__block--left"></div>
-        <div class="layout-elements__block layout-elements__block--right"></div>
-      </div>
       <div class="container">
         <div class="row h-100 align-items-center">
-          <div class="col d-flex justify-content-center">
+          <div class="col h-100 d-flex justify-content-center align-items-center position-relative">
             <div class="wrapper-promo">
               <h2>¡Promociones!</h2>
             </div>
+            <div class="position-absolute box-promotions">
+              <img src="@/static/img/extra-grande.png" class="img-fluid" alt>
+              <img src="@/static/img/grande.png" class="img-fluid" alt>
+              <img src="@/static/img/mediana.png" class="img-fluid" alt>
+              <img src="@/static/img/pequeña.png" class="img-fluid" alt>
+            </div>
           </div>
-          <div class="col">
-            <div class="wrapper-promotion d-flex justify-content-center position-relative">
+          <div class="col promotions-block position-relative">
+            <div class="layout-elements position-absolute overflow-hidden">
               <div class="pizzas position-absolute">
                 <div class="pizzas__img">
                   <img src="@/static/img/pizza.png" class="img-fluid" alt>
@@ -120,21 +217,14 @@
                   <img src="@/static/img/pizza.png" class="img-fluid" alt>
                 </div>
               </div>
+            </div>
+            <div class="wrapper-promotion d-flex justify-content-center position-relative">
               <h2 class="promotion-message text-right">
                 <span class="promotion-message__quantity">2</span> pizzas grandes por
                 <span class="promotion-message__price">
                   <span class="promotion-message__currency">$</span>160
                 </span>
               </h2>
-              <!-- <h2 class="promo-title">
-                <span class="promo-title__word promo-title__word--promo">Promo</span>
-                <span class="promo-title__word promo-title__word--quantity">2</span>
-                <span class="promo-title__word promo-title__word--pizza">Pizzas</span>
-                <span class="promo-title__word promo-title__word--for">por</span>
-                <span class="promo-title__word promo-title__word--height">grandes</span>
-                <span class="promo-title__word promo-title__word--currency">$</span>
-                <span class="promo-title__word promo-title__word--price">160</span>
-              </h2>-->
             </div>
           </div>
         </div>
@@ -183,6 +273,36 @@ export default {
   layout: "pizzeria",
   data() {
     return {
+      combos: [
+        {
+          id: 1,
+          name: "Combo 1",
+          price: "$49.90",
+          pieces: [{ name: "Pizza chica" }, { name: "Refresco 355ml" }],
+          img: require("@/static/img/pizza.png")
+        },
+        {
+          id: 2,
+          name: "Combo 2",
+          price: "$99.90",
+          pieces: [{ name: "Pizza Grande" }, { name: "2 Refrescos 355ml" }],
+          img: require("@/static/img/pizza.png")
+        },
+        {
+          id: 3,
+          name: "Combo 3",
+          price: "$269.90",
+          pieces: [{ name: "3 Pizzas Grandes" }, { name: "2 Refrescos 1.5l" }],
+          img: require("@/static/img/pizza.png")
+        },
+        {
+          id: 4,
+          name: "Combo 4",
+          price: "$349.90",
+          pieces: [{ name: "4 Pizzas Grandes" }, { name: "3  Refrescos 1.5l" }],
+          img: require("@/static/img/pizza.png")
+        }
+      ],
       menu: [
         {
           id: "",
@@ -295,8 +415,18 @@ export default {
           description: "4 ingredientes al gusto"
         }
       ],
-      patternSelect: ""
+      patternSelect: "pattern3"
     };
+  },
+  methods: {
+    showCombo(event) {
+      const element = event.target.closest(".custom-card");
+      const elements = document.querySelectorAll(".custom-card");
+      elements.forEach(el => {
+        el.classList.remove("open");
+      });
+      element.classList.toggle("open");
+    }
   }
 };
 </script>
@@ -430,14 +560,24 @@ body {
     }
     &.pattern2 {
       &::after {
-        content: "";
         background: url("~@/static/img/pizza_pattern2.png");
         background-size: 250px;
       }
     }
     &.pattern3 {
       &::after {
-        background: url("~@/static/img/pizza_pattern4.png");
+        background: linear-gradient(
+            180deg,
+            $primary,
+            transparent,
+            transparent,
+            transparent,
+            transparent,
+            transparent,
+            transparent,
+            white
+          ),
+          url("~@/static/img/pizza_pattern4.png");
         background-size: 250px;
       }
     }
@@ -449,12 +589,10 @@ h1 {
 h2 {
   font-size: 24pt;
 }
-.btn.btn-primary {
-  // background-color: $blanco;
-}
 // theme start
 .combos-content {
-  //   background: url("~@/static/img/pizzeria_patter.png");
+  display: grid;
+  grid-template-rows: 65% 1fr;
   z-index: 200;
   &__title {
     color: $primary;
@@ -464,41 +602,156 @@ h2 {
     &__wrapper {
       background-color: $secondary;
       display: grid;
-      grid-template-rows: 55% 1fr;
       height: 100%;
-      width: 200px;
+      width: 250px;
       margin: 0 auto;
       box-shadow: 1px 1px 4px rgba(black, 0.25);
-      border-radius: 5px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
     }
-    &__img {
-      background-color: grey;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    h3,
+    li,
+    span {
+      color: $accent-3;
     }
     &__body {
-      padding: 1rem;
+      padding: 3rem 1rem;
       display: grid;
+      grid-template-rows: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       overflow: hidden;
-    }
-    &__name,
-    &__price,
-    &__ingredient {
-      color: grey;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background-color: $primary;
+        bottom: 0;
+        left: 0;
+      }
     }
     &__name {
+      grid-column: 1 / -1;
+      justify-self: center;
+      align-self: center;
       font-weight: bold;
-      color: $primary;
+      color: $accent-3;
+      font-size: 18pt;
+      text-transform: uppercase;
+      h3 {
+        color: currentColor;
+      }
     }
     &__price {
+      grid-column: 1 / 4;
+      grid-row: 3 / 4;
+      align-self: center;
+      justify-self: center;
+      z-index: 100;
+      position: relative;
+      font-weight: bold;
+      font-size: 25pt;
+      color: $primary;
+      h3,
+      span {
+        color: currentColor;
+      }
+      .price {
+        display: flex;
+        text-shadow: 0px 2px 0px white;
+        &__currency {
+          color: $accent-3;
+          margin-right: 0.5rem;
+          font-size: 20pt;
+        }
+        &__centena {
+          font-size: 10pt;
+        }
+      }
+    }
+    &__card-overlay {
       background-color: $primary;
-      width: 100px;
-      height: 100px;
-      right: 0;
-      bottom: 0;
-      transform: translate(75%, 75%);
-      border-radius: 50%;
+      z-index: 150;
+      transform: translateY(0);
+      transition: transform 0.5s ease, background-color, 0.5s ease;
+      img {
+        width: 50%;
+      }
+    }
+    &__items {
+      grid-row: 5 / 6;
+      grid-column: 1 / 4;
+      align-self: center;
+      text-align: center;
+    }
+    &__item {
+      font-weight: bold;
+      z-index: 100;
+      position: relative;
+      font-size: 11pt;
+      text-shadow: 0px 1px 0px white;
+    }
+    &.open {
+      .custom-card {
+        &__card-overlay {
+          transform: translateY(-100%);
+        }
+      }
+    }
+    &:not(.open) {
+      .custom-card {
+        &__card-overlay {
+          background-color: darken($primary, 5);
+        }
+      }
+    }
+  }
+  .specials {
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin: 1rem auto 0.5rem;
+    .special-box {
+      background-color: $secondary;
+      color: $accent-3;
+      border: 3px solid #dceee5;
+      box-shadow: 0px 5px 5px #dceee5;
+      border-radius: 20px;
+      padding: 1.5rem;
+      display: grid;
+      &__piece,
+      &__pieces,
+      &__price,
+      &__title,
+      &__description {
+        color: currentColor;
+        font-weight: bold;
+      }
+      &__piece,
+      &__description {
+        font-size: 11pt;
+        text-align: right;
+        align-self: end;
+      }
+      &__price {
+        font-weight: bold;
+        font-size: 22pt;
+        letter-spacing: -1px;
+        display: flex;
+        .cents {
+          font-size: 14pt;
+          color: $primary;
+        }
+      }
+      &__title {
+        text-transform: uppercase;
+        width: min-content;
+      }
+      &--without-title {
+      }
     }
   }
 }
@@ -580,43 +833,59 @@ h2 {
     transform: scale(0.5);
   }
 }
-.layout-elements {
-  display: flex;
-  &__block {
-    flex: 1;
-    height: 100%;
-  }
-  &__block--right {
-    margin-left: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: $primary;
-    border-top-left-radius: 600px 600px;
-    animation: swipeLeft 2s ease 1;
-    transform: translateX(-10%);
-    flex: 0 1 40%;
-    height: 50%;
+
+// ref
+.promotions-block {
+  .layout-elements {
+    width: 100%;
+    height: 350px;
+    background: radial-gradient(
+      circle at bottom right,
+      darken($primary, 10),
+      darken($primary, 2),
+      $primary
+    );
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 150px;
     border-top-right-radius: 150px;
+    .pizzas {
+      width: 300px;
+      height: 200px;
+      bottom: 0;
+      right: 0;
+      transform: translate(15%, 35%);
+      &__img {
+        width: 200px;
+        position: absolute;
+      }
+      &__img:nth-child(1) {
+        z-index: 100;
+        img {
+          filter: drop-shadow(18px 15px 3px rgba(8, 30, 2, 0.2));
+        }
+      }
+      &__img:nth-child(2) {
+        transform: translateX(50%);
+        filter: blur(1px);
+        opacity: 0.9;
+      }
+    }
   }
 }
-.pizzas {
-  display: flex;
-  top: 75%;
-  left: 200px;
-  &__img {
-    width: 200px;
-  }
-  &__img:nth-child(1) {
-    transform: translateX(50px);
-    z-index: 100;
-  }
-  &__img:nth-child(2) {
-    transform: translateX(-50px);
-    filter: blur(1.5px);
-    opacity: 0.7;
+.section-block__promotions {
+  .box-promotions {
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    img {
+      width: auto;
+    }
   }
 }
 .pizza-hero {

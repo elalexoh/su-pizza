@@ -85,22 +85,29 @@
         </ul>-->
 
         <!-- social Media -->
-        <ul class="footer-block footer-block--social-media list-unstyled">
-          <li class="social-media__item">
-            <a
-              href="https://www.facebook.com"
-              class="text-decoration-none text-reset"
-              target="_blank"
-            >Facebook</a>
-          </li>
-          <li class="social-media__item">
-            <a
-              href="https://www.facebook.com"
-              class="text-decoration-none text-reset"
-              target="_blank"
-            >Twitter</a>
-          </li>
-        </ul>
+        <div class="footer-block footer-block--social-media">
+          <ul class="list-unstyled social-wrapper">
+            <li class="social-media__item">
+              <a
+                href="https://www.facebook.com"
+                class="text-decoration-none text-reset"
+                target="_blank"
+              >
+                <img src="@/static/img/icon_facebook.png" alt>
+              </a>
+            </li>
+            <li class="social-media__item">
+              <a
+                href="https://www.facebook.com"
+                class="text-decoration-none text-reset"
+                target="_blank"
+              >
+                <img src="@/static/img/icon_twitter.png" alt>
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <!-- copyright -->
         <div class="footer-block footer-block--copyright">2020 @ su pizzeria all rights reserved.</div>
       </div>
@@ -203,6 +210,13 @@ export default {
         font-weight: bolder;
         padding-bottom: 0.8rem;
       }
+      &--direction {
+        display: grid;
+        grid-template-rows: max-content 1fr;
+      }
+      &__direction {
+        align-self: center;
+      }
       &--payment-methods,
       &--copyright,
       &--social-media {
@@ -224,6 +238,12 @@ export default {
         grid-column: 1 / -1;
         font-size: 10pt;
         font-weight: bold;
+      }
+      .social-wrapper {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
       }
     }
   }

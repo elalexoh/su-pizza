@@ -1,4 +1,10 @@
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: 'su-pizza'
+  }
+} : {}
 export default {
+  ...routerBase,
   server: {
     port: 8080,
     host: "0.0.0.0"
