@@ -1,4 +1,4 @@
-# parking-lots
+# Su pizza
 
 > My super-duper Nuxt.js project
 

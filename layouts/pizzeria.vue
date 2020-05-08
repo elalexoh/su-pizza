@@ -6,20 +6,18 @@
       class="loadScreen"
       :class="getStateLoading ? 'loaded': 'loading'"
     >
-      <h1>Cargando</h1>
-      <figure></figure>
+      <img src="@/static/img/pizza-loader.gif" alt />
     </section>
 
     <!-- header -->
     <header
       class="container layout-block layout-block__header position-absolute d-flex justify-content-between align-items-center mx-auto"
     >
-      <img src="@/static/img/logoSuPizza.svg" width="125" class="img-fluid" alt>
+      <img src="@/static/img/logoSuPizza.svg" width="125" class="img-fluid" alt />
 
       <!-- main menu -->
-      <ul class="main-menu d-flex">
+      <ul class="main-menu d-none d-md-flex">
         <li class="main-menu__item" v-for="(item, index) in menuSettings.sections" :key="index">
-          <!-- <a href="#hero" class="text-decoration-none text-reset">Inicio</a> -->
           <nuxt-link
             :to="item.link"
             tag="a"
@@ -30,24 +28,32 @@
       </ul>
 
       <!-- Mobile menu -->
-      <ul class="mobile-menu d-none">
-        <li class="mobile-menu__item">
-          <a href="#hero" class="text-decoration-none text-reset">Inicio</a>
+      <ul class="mobile-menu d-flex d-md-none" :class="pizzaMenu ? '' : 'hidden'">
+        <li class="mobile-menu__item" v-for="(item, index) in menuSettings.sections" :key="index">
+          <nuxt-link
+            :to="item.link"
+            tag="a"
+            :menu-name="item.link"
+            class="text-decoration-none text-reset"
+          >{{item.name}}</nuxt-link>
         </li>
-        <li class="mobile-menu__item">
-          <a href="#promotions" class="text-decoration-none text-reset">Promociones</a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="#our-menu" class="text-decoration-none text-reset">Nuestro menu</a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="#combos-and-specials" class="text-decoration-none text-reset">Especiales</a>
+        <li
+          class="mobile-menu__item mobile-menu__item--toggle"
+          :class="pizzaMenu ? 'hide' : 'show'"
+          @click="pizzaMenu = !pizzaMenu"
+        >
+          <div v-if="pizzaMenu">
+            <img src="@/static/img/pizza/open.svg" class="img-fluid" alt />
+          </div>
+          <div v-else>
+            <img src="@/static/img/pizza/close.svg" class="img-fluid" alt />
+          </div>
         </li>
       </ul>
     </header>
 
     <!-- body -->
-    <nuxt/>
+    <nuxt />
 
     <!-- footer -->
     <footer class="wrapper-footer position-relative">
@@ -89,11 +95,11 @@
           <ul class="list-unstyled social-wrapper">
             <li class="social-media__item">
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/supizzamorelia/"
                 class="text-decoration-none text-reset"
                 target="_blank"
               >
-                <img src="@/static/img/icon_facebook.png" alt>
+                <img src="@/static/img/icon_facebook.png" alt />
               </a>
             </li>
             <li class="social-media__item">
@@ -102,7 +108,7 @@
                 class="text-decoration-none text-reset"
                 target="_blank"
               >
-                <img src="@/static/img/icon_twitter.png" alt>
+                <img src="@/static/img/icon_twitter.png" alt />
               </a>
             </li>
           </ul>
@@ -112,12 +118,24 @@
         <div class="footer-block footer-block--copyright">2020 @ su pizzeria all rights reserved.</div>
       </div>
       <div class="footer-pizza position-absolute">
-        <img src="@/static/img/pizza.png" class="img-fluid" alt>
+        <img src="@/static/img/pizza.png" class="img-fluid" alt />
       </div>
     </footer>
-    <div class="position-fixed go-top">
-      <nuxt-link to="/#inicio">{{getStateLoading}}</nuxt-link>
-    </div>
+    <a
+      href="https://api.whatsapp.com/send?phone=5214433515466&text=%C2%A1Hola!%20me%20gustar%C3%ADa%20pedir%20una%20pizza."
+      class="position-fixed go-top text-decoration-none font-weight-bold"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="go-top__icon">
+        <img src="@/static/img/whatss.svg" class="img-fluid" alt />
+      </span>
+    </a>
+    <!-- <nuxt-link to="/#inicio" class="">
+      <span class="go-top__icon">
+        <img src="@/static/img/whatss.svg" class="img-fluid" alt>
+      </span>
+    </nuxt-link>-->
   </div>
 </template>
 <script>
@@ -125,15 +143,23 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
+      pizzaMenu: false,
       menuSettings: {
         sections: [
-          { link: "#hero", name: "Inicio" },
+          // { link: "#hero", name: "Inicio" },
           { link: "#combos-and-specials", name: "Especiales" },
           { link: "#promotions", name: "Promociones" },
           { link: "#our-menu", name: "Menu" }
         ]
-      }
+      },
+      windowTop: ""
     };
+  },
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed: function() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
   mounted() {
     if (process.browser) {
@@ -152,7 +178,10 @@ export default {
   methods: {
     ...mapActions({
       setLoading: "loading/setLoading"
-    })
+    }),
+    handleScroll: function(event) {
+      this.windowTop = window.top.scrollY;
+    }
   }
 };
 </script>
@@ -174,7 +203,8 @@ export default {
 .layout-block {
   position: relative;
   &__header {
-    top: 0;
+    // top: 1rem;
+    padding-top: 1rem;
     left: 50%;
     transform: translateX(-50%);
     position: relative;
@@ -193,6 +223,86 @@ export default {
       &:hover {
         &::after {
           transform: translateY(-25%);
+        }
+      }
+    }
+    .mobile-menu {
+      position: absolute;
+      background-color: $primary;
+      width: 100vw;
+      left: 50%;
+      transform: translate(-50.1%, 0%);
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      top: 0;
+      transition: transform 0.5s ease;
+      a[menu-name="#promotions"]::after {
+        top: 50%;
+        transform: translateY(-100%);
+      }
+      &::after {
+        content: "";
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+        position: absolute;
+        bottom: 0;
+      }
+      &.hidden {
+        transform: translate(-50.1%, -100%);
+      }
+      &__item {
+        // background-color: #bada55;
+        flex: 1;
+        height: 100%;
+        display: flex;
+        transition: background-color 0.5s ease, color 0.8s ease;
+        a {
+          text-align: center;
+          display: block;
+          width: 100%;
+          height: 100%;
+          padding: 50px 0;
+          font-weight: bold;
+        }
+        &--toggle {
+          cursor: pointer;
+          background-color: transparent;
+          position: absolute;
+          bottom: -22px;
+          transform: translateY(100%);
+          right: 2rem;
+          height: max-content;
+          width: 50px;
+          // padding: 1rem;
+          transition: bottom 0.5s 0.5s ease;
+          font-weight: bold;
+          color: $secondary;
+          p {
+            color: $secondary;
+          }
+          &.hide {
+            bottom: 0px;
+          }
+        }
+        ::after {
+          color: $secondary;
+        }
+        &:hover {
+          // background-color: #bada55;
+          color: $primary;
+          ::after {
+            color: $secondary;
+          }
+          &--toggle {
+            background-color: transparent !important;
+          }
+        }
+      }
+      @media (max-width: 575px) {
+        &__item {
+          flex: 0 1 100%;
         }
       }
     }
@@ -246,6 +356,38 @@ export default {
         justify-content: space-around;
       }
     }
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+      .footer-block {
+        &--direction,
+        &--copyright,
+        &--phones,
+        &--social-media,
+        &--sections {
+          justify-self: center;
+          text-align: center;
+          grid-column: 1 / 2;
+        }
+        &--direction {
+          grid-row: 2 / 3;
+          margin: 2.5rem auto;
+          width: 70%;
+        }
+        &--copyright {
+          grid-row: 6 / 7;
+        }
+        &--phones {
+          grid-row: 3 / 4;
+          margin-bottom: 1rem;
+        }
+        &--social-media {
+          grid-row: 4 / 5;
+        }
+        &__phone {
+          text-align: center;
+        }
+      }
+    }
   }
 }
 .main-menu {
@@ -292,6 +434,10 @@ export default {
   justify-content: center;
   border-radius: 50%;
   border: 2px solid $secondary;
+  z-index: 1000;
+  img {
+    height: 30px;
+  }
   a {
     color: currentColor;
   }

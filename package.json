@@ -1,5 +1,5 @@
 {
-  "name": "parking-lots",
+  "name": "Pizza",
   "version": "1.0.0",
   "description": "My super-duper Nuxt.js project",
   "author": "Ernesto Murrugarra",
@@ -18,7 +18,8 @@
     "chart.js": "^2.9.3",
     "hchs-vue-charts": "^1.2.8",
     "nuxt": "^2.0.0",
-    "vuelidate": "^0.7.5"
+    "vuelidate": "^0.7.5",
+    "v-owl-carousel": "^1.0.8"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
