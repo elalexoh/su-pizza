@@ -454,9 +454,13 @@
             :key="i"
           >
             <div class="deeply-switch" :class="showAllMenu ? 'active-all' : ''">
+              <div class="deeply-switch__title text-capitalize">
+                {{ pizza.name }}
+                <span v-if="pizza.newProduct" class="new-pizza">New</span>
+              </div>
               <div class="deeply-switch__back">
                 <div class="deeply-switch__wrapper-body">
-                  <div class="deeply-switch__title text-capitalize">{{ pizza.name }}</div>
+                  <!-- <div class="deeply-switch__title text-capitalize">{{ pizza.name }}</div> -->
                   <div class="deeply-switch__description">{{ pizza.description }}</div>
                 </div>
               </div>
@@ -464,6 +468,24 @@
                 <img :src="pizza.img" v-if="pizza.img" class="img-fluid" alt />
                 <img src="@/static/img/pizza.png" v-else class="img-fluid" alt />
               </div>
+              <ul class="deeply-switch__sizes">
+                <li class="deeply-switch__size">
+                  <span>Extra Grande</span>
+                  <span>$115</span>
+                </li>
+                <li class="deeply-switch__size">
+                  <span>Grande</span>
+                  <span>$90</span>
+                </li>
+                <li class="deeply-switch__size">
+                  <span>Mediana</span>
+                  <span>$70</span>
+                </li>
+                <li class="deeply-switch__size">
+                  <span>Chica</span>
+                  <span>$45</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -627,7 +649,7 @@ export default {
           id: "",
           name: "Combinación pizza suprema",
           description: "Pruebala!",
-          new: true
+          newProduct: true
         },
         {
           id: "",
@@ -716,6 +738,78 @@ export default {
   $width_front: 150px;
   position: relative;
   width: $width_front;
+  &__sizes {
+    background-color: $secondary;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 270px;
+    position: absolute;
+    bottom: 0;
+    transform: translate(-50%, 0%);
+    z-index: 100;
+    left: 50%;
+    align-items: center;
+    height: 65px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(black, 0.25);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  &__size {
+    text-align: center;
+    font-size: 10pt;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    &::after {
+      content: "";
+      width: 2px;
+      height: 45px;
+      background-color: rgba($primary, 0.25);
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(50%, -50%);
+    }
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+    span {
+      color: $primary;
+      &:first-child {
+        height: 27px;
+      }
+    }
+  }
+  &__title {
+    $extra_size: 25px;
+    color: $primary;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: 14pt;
+    padding: 1rem;
+    font-weight: bold;
+    background-color: #fff;
+    transition: background-color 0.5s ease;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(black, 0.25);
+    width: calc(100% + #{$extra_size});
+    transform: translateX($extra_size / 2 * -1);
+    .new-pizza {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      background-color: red;
+      padding: 0.5rem;
+      font-size: 10pt;
+      border-radius: 5px;
+    }
+  }
   &__front {
     width: $width_front;
     height: 140px;
@@ -750,16 +844,20 @@ export default {
       margin-left: auto;
       transition: opacity 0.5s ease;
     }
-    .deeply-switch__title {
-      font-weight: bold;
-      padding-bottom: 0.5rem;
-    }
     .deeply-switch__description {
       color: grey;
     }
   }
   &:hover,
   &.active-all {
+    .deeply-switch__sizes {
+      opacity: 1;
+      transform: translate(-50%, 50%);
+    }
+    .deeply-switch__title {
+      background-color: transparent;
+      box-shadow: 0px 6px 10px rgba(black, 0);
+    }
     .deeply-switch__front {
       transform: translateX(-50%);
     }
@@ -845,6 +943,7 @@ body {
   }
   .my-menu {
     position: relative;
+    padding-top: 3rem;
     &::after {
       content: "";
       position: absolute;
